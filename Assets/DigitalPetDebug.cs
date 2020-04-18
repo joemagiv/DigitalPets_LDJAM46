@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DigitalPet : MonoBehaviour
+public class DigitalPetDebug : MonoBehaviour
 {
     //UI Text Elements
     public Text HealthText;

@@ -2654,7 +2654,7 @@ MonoBehaviour:
   HappinessText: {fileID: 220078269}
   ScreenText: {fileID: 1836493830}
   LevelText: {fileID: 1362944998}
-  Notifications: {fileID: 95526847}
+  Notifications: {fileID: 296481858}
   Health: 100
   Hunger: 100
   Poop: 0
