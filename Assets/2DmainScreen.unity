@@ -293,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 831779689}
+  - component: {fileID: 831779690}
   m_Layer: 0
   m_Name: VirtualPet
   m_TagString: Untagged
@@ -320,6 +321,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &831779690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831779688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a31b9e77b9e3aa4d93637bef2cc19cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBar: {fileID: 902690521}
+  FoodBar: {fileID: 54958078}
+  HappinessBar: {fileID: 2043620702}
+  ScreenSelectorSpriteRenderer: {fileID: 1065119481}
+  PoopsSpriteRenderer: {fileID: 1956103129}
+  FoodScreenSprite: {fileID: 21300000, guid: 103dfa54ac74b1b4ea04ff3a68f7c3fd, type: 3}
+  CleanScreenSprite: {fileID: 21300000, guid: 266cfcba1ec3dd84c9650af817f14160, type: 3}
+  PlayScreenSprite: {fileID: 21300000, guid: 29eb5ddb3d71cdb4c9fc0379df17513d, type: 3}
+  Poop1Sprite: {fileID: 21300000, guid: b50405cf05088df45875c84e2b8f9d48, type: 3}
+  Poop2Sprite: {fileID: 21300000, guid: 165d4deeee5be1c4f9aec3784da7560b, type: 3}
+  Poop3Sprite: {fileID: 21300000, guid: 694c2992621f19f48ad8734a2c313529, type: 3}
+  Poop4Sprite: {fileID: 21300000, guid: 2a77ffddd40fcec469bf63060bf1205e, type: 3}
+  MainCharacterAnimator: {fileID: 1506930029}
+  WashingScreenAnimator: {fileID: 2137362603}
+  Health: 100
+  Hunger: 100
+  Poop: 0
+  Happiness: 100
+  HungerRateDecrease: 10
+  timer: 0
+  timeToHeartbeat: 5
+  totalHeartbeats: 0
+  screen: 0
 --- !u!1 &902690520
 GameObject:
   m_ObjectHideFlags: 0
