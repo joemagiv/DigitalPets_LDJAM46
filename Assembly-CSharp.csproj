@@ -67,6 +67,8 @@
     <Compile Include="Assets\DigitalPetButton.cs" />
     <Compile Include="Assets\DigitalPetDebug.cs" />
     <Compile Include="Assets\Gamecontroller.cs" />
+    <Compile Include="Assets\MusicController.cs" />
+    <Compile Include="Assets\SceneController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
