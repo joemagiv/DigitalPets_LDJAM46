@@ -48,6 +48,13 @@ public class DigitalPet : MonoBehaviour
     public Animator MainCharacterAnimator;
     public Animator WashingScreenAnimator;
 
+    //Audio
+
+    private AudioSource audioSource;
+    public AudioClip AlertSound;
+    public AudioClip CleanSound;
+    public AudioClip PoopSound;
+    public AudioClip DieSound;
     
 
     public float Health;
@@ -74,6 +81,7 @@ public class DigitalPet : MonoBehaviour
     {
         UpdateBars();
         timerActive = true;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void UpdateBars()
@@ -162,6 +170,8 @@ public class DigitalPet : MonoBehaviour
     private void Clean()
     {
         WashingScreenAnimator.SetTrigger("Wash");
+        audioSource.clip = CleanSound;
+        audioSource.Play();
         if (Poop >= 1)
         {
             Poop -= 1;
@@ -221,6 +231,8 @@ public class DigitalPet : MonoBehaviour
         {
             Health -= 25f;
             Happiness -= 10f;
+            audioSource.clip = AlertSound;
+            audioSource.Play();
         }
 
     }
@@ -287,6 +299,8 @@ public class DigitalPet : MonoBehaviour
             if (roll <= 2)
             {
                 Poop++;
+                audioSource.clip = PoopSound;
+                audioSource.Play();
                 UpdatePoopSprite();
             }
         }
@@ -321,6 +335,8 @@ public class DigitalPet : MonoBehaviour
         if (Happiness <= 20f)
         {
             Health -= 10f;
+            audioSource.clip = AlertSound;
+            audioSource.Play();
         }
     }
 
@@ -334,6 +350,8 @@ public class DigitalPet : MonoBehaviour
             ScreenSelectorSpriteRenderer.sprite = null;
             MainCharacterGO.SetActive(true);
             MainCharacterAnimator.SetTrigger("Dead");
+            audioSource.clip = DieSound;
+            audioSource.Play();
             StatusIndicators.SetActive(false);
             PoopsSpriteRenderer.sprite = null;
             AgeText.text = totalHeartbeats.ToString() + "\nDays";

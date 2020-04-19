@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/TitleScreen.unity
     guid: 015ce8f77a820364494fe2e2258c86ce
   - enabled: 1
+    path: Assets/InstructionsScreen.unity
+    guid: 01cebb231d4a1854e824801f0064921a
+  - enabled: 1
     path: Assets/2DmainScreen.unity
     guid: 543636df6dfb914489f8546b0e82fade
   m_configObjects: {}

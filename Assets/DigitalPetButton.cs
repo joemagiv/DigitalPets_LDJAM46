@@ -7,6 +7,10 @@ public class DigitalPetButton : MonoBehaviour
     private DigitalPet digitalPet;
     private Animator buttonAnimator;
 
+    private AudioSource audioSource;
+
+    public AudioClip audioClip;
+
     public int buttonNumber;
 
     // Start is called before the first frame update
@@ -14,6 +18,8 @@ public class DigitalPetButton : MonoBehaviour
     {
         digitalPet = GetComponentInParent<DigitalPet>();
         buttonAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -21,7 +27,6 @@ public class DigitalPetButton : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Pressed left click, casting ray.");
             CastRay();
         }
     }
@@ -29,6 +34,9 @@ public class DigitalPetButton : MonoBehaviour
     void ButtonPressed()
     {
         buttonAnimator.SetTrigger("Clicked");
+        audioSource.clip = audioClip;
+        audioSource.Play();
+
         if (buttonNumber == 1)
         {
             digitalPet.Button1ChangeScreen();
@@ -43,6 +51,7 @@ public class DigitalPetButton : MonoBehaviour
         {
             digitalPet.Button3Exit();
         }
+
     }
 
     void CastRay()
@@ -51,11 +60,10 @@ public class DigitalPetButton : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
+
 
             if (hit.collider.gameObject == this.gameObject)
             {
-                Debug.Log("This was taht");
 
                 ButtonPressed();
             }

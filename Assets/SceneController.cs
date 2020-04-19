@@ -13,7 +13,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadMainScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     // Update is called once per frame
