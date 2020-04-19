@@ -66,6 +66,7 @@
     <Compile Include="Assets\DigitalPet.cs" />
     <Compile Include="Assets\DigitalPetButton.cs" />
     <Compile Include="Assets\DigitalPetDebug.cs" />
+    <Compile Include="Assets\Gamecontroller.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -87,14 +88,14 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>E:/UnityProjects/DigitalPets_LDJAM46/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

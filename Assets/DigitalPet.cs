@@ -57,7 +57,7 @@ public class DigitalPet : MonoBehaviour
 
     public float HungerRateDecrease;
 
-    private bool timerActive;
+    public bool timerActive;
 
     public float timer;
     public float timeToHeartbeat;
@@ -336,7 +336,7 @@ public class DigitalPet : MonoBehaviour
             MainCharacterAnimator.SetTrigger("Dead");
             StatusIndicators.SetActive(false);
             PoopsSpriteRenderer.sprite = null;
-            AgeText.text = totalHeartbeats.ToString();
+            AgeText.text = totalHeartbeats.ToString() + "\nDays";
         }
     }
 
@@ -407,7 +407,7 @@ public class DigitalPet : MonoBehaviour
         {
             StatusIndicators.SetActive(false);
             PoopsSpriteRenderer.sprite = null;
-            AgeText.text = totalHeartbeats.ToString();
+            AgeText.text = totalHeartbeats.ToString() + "\nDays";
         }
         
     }
