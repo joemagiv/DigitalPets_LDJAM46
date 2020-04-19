@@ -6,13 +6,19 @@ using UnityEngine.UI;
 public class DigitalPet : MonoBehaviour
 {
     //Deprecated UI Text Elements
-/*    public Text HealthText;
-    public Text HungerText;
-    public Text PoopText;
-    public Text HappinessText;
-    public Text ScreenText;
-    public Text Notifications;
-    public Text LevelText;*/
+    /*    public Text HealthText;
+        public Text HungerText;
+        public Text PoopText;
+        public Text HappinessText;
+        public Text ScreenText;
+        public Text Notifications;
+        public Text LevelText;*/
+
+    public TextMesh AgeText;
+    public GameObject MainCharacterGO;
+
+    public GameObject StatusIndicators;
+
 
     //Transforms for Status bars
 
@@ -79,26 +85,34 @@ public class DigitalPet : MonoBehaviour
 
     public void Button1ChangeScreen()
     {
-        //Screens are 0 = base screen, 1 = food, 2 = poop cleaning, 3 = play. Button 3 always resets to Screen 0.
-        if (screen == 3)
+        if (timerActive)
         {
-            screen = 0;
-            ScreenSelectorSpriteRenderer.sprite = null;
-        }
-        else
-        {
-            screen++;
-            if (screen == 1)
-            {
-                ScreenSelectorSpriteRenderer.sprite = FoodScreenSprite;
-            }
-            if (screen == 2)
-            {
-                ScreenSelectorSpriteRenderer.sprite = CleanScreenSprite;
-            }
+            //Screens are 0 = base screen, 1 = food, 2 = poop cleaning, 3 = play. Button 3 always resets to Screen 0.
             if (screen == 3)
             {
-                ScreenSelectorSpriteRenderer.sprite = PlayScreenSprite;
+                screen = 0;
+                ScreenSelectorSpriteRenderer.sprite = null;
+                MainCharacterGO.SetActive(true);
+                UpdatePoopSprite();
+            }
+            else
+            {
+                screen++;
+                MainCharacterGO.SetActive(false);
+                PoopsSpriteRenderer.sprite = null;
+
+                if (screen == 1)
+                {
+                    ScreenSelectorSpriteRenderer.sprite = FoodScreenSprite;
+                }
+                if (screen == 2)
+                {
+                    ScreenSelectorSpriteRenderer.sprite = CleanScreenSprite;
+                }
+                if (screen == 3)
+                {
+                    ScreenSelectorSpriteRenderer.sprite = PlayScreenSprite;
+                }
             }
         }
     }
@@ -109,6 +123,8 @@ public class DigitalPet : MonoBehaviour
     {
         if (timerActive)
         {
+            MainCharacterGO.SetActive(true);
+
             if (screen == 1)
             {
                 Feed();
@@ -127,6 +143,7 @@ public class DigitalPet : MonoBehaviour
         screen = 0;
         ScreenSelectorSpriteRenderer.sprite = null;
 
+        UpdatePoopSprite();
         UpdateBars();
     }
 
@@ -155,7 +172,7 @@ public class DigitalPet : MonoBehaviour
     private void Play()
     {
         MainCharacterAnimator.SetTrigger("Play");
-        if (Happiness < 100 && Happiness > 90)
+        if (Happiness <= 100 && Happiness > 90)
         {
             Happiness = 100;
         } else
@@ -169,9 +186,14 @@ public class DigitalPet : MonoBehaviour
     public void Button3Exit()
     {
         //reset to base screen
-
-        screen = 0;
-        ScreenSelectorSpriteRenderer.sprite = null;
+        if (timerActive)
+        {
+            screen = 0;
+            ScreenSelectorSpriteRenderer.sprite = null;
+            MainCharacterGO.SetActive(true);
+            UpdatePoopSprite();
+        }
+        
     }
 
     private void CheckHunger()
@@ -205,26 +227,31 @@ public class DigitalPet : MonoBehaviour
 
     private void UpdatePoopSprite()
     {
-        if (Poop == 0)
+        if(screen == 0)
         {
-            PoopsSpriteRenderer.sprite = null;
+            //only do this if you're on screen 0
+            if (Poop == 0)
+            {
+                PoopsSpriteRenderer.sprite = null;
+            }
+            if (Poop == 1)
+            {
+                PoopsSpriteRenderer.sprite = Poop1Sprite;
+            }
+            if (Poop == 2)
+            {
+                PoopsSpriteRenderer.sprite = Poop2Sprite;
+            }
+            if (Poop == 3)
+            {
+                PoopsSpriteRenderer.sprite = Poop3Sprite;
+            }
+            if (Poop == 4)
+            {
+                PoopsSpriteRenderer.sprite = Poop4Sprite;
+            }
         }
-        if (Poop == 1)
-        {
-            PoopsSpriteRenderer.sprite = Poop1Sprite;
-        }
-        if (Poop == 2)
-        {
-            PoopsSpriteRenderer.sprite = Poop2Sprite;
-        }
-        if (Poop == 3)
-        {
-            PoopsSpriteRenderer.sprite = Poop3Sprite;
-        }
-        if (Poop == 4)
-        {
-            PoopsSpriteRenderer.sprite = Poop4Sprite;
-        }
+        
 
     }
 
@@ -303,8 +330,13 @@ public class DigitalPet : MonoBehaviour
         {
             Health = 0;
             timerActive = false;
+            screen = 0;
+            ScreenSelectorSpriteRenderer.sprite = null;
+            MainCharacterGO.SetActive(true);
             MainCharacterAnimator.SetTrigger("Dead");
+            StatusIndicators.SetActive(false);
             PoopsSpriteRenderer.sprite = null;
+            AgeText.text = totalHeartbeats.ToString();
         }
     }
 
@@ -332,8 +364,10 @@ public class DigitalPet : MonoBehaviour
         CheckDeath();
 
         //Increment total Heartbeats
-
-        IncrementHeartbeats();
+        if (timerActive)
+        {
+            IncrementHeartbeats();
+        }
 
         UpdateBars();
 
@@ -345,15 +379,15 @@ public class DigitalPet : MonoBehaviour
 
         if (totalHeartbeats > 10 && totalHeartbeats < 15)
         {
-            timeToHeartbeat = 4f;
+            timeToHeartbeat = 7f;
         }
         if (totalHeartbeats >= 15 && totalHeartbeats < 30)
         {
-            timeToHeartbeat = 3f;
+            timeToHeartbeat = 5f;
         }
         if (totalHeartbeats >= 30)
         {
-            timeToHeartbeat = 2.5f;
+            timeToHeartbeat = 3f;
         }
     }
 
@@ -369,6 +403,11 @@ public class DigitalPet : MonoBehaviour
                 timer = 0f;
                 Heartbeat();
             }
+        } else
+        {
+            StatusIndicators.SetActive(false);
+            PoopsSpriteRenderer.sprite = null;
+            AgeText.text = totalHeartbeats.ToString();
         }
         
     }
